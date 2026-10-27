@@ -2,6 +2,46 @@
 > For the most recent versions, please refer to [CHANGELOG.md](./CHANGELOG.md)
 ---
 
+## v0.22.57
+
+- (_Backported from v0.40.6_) Added a global restriction for the max `WxH` pixels size when generating a thumb to reduce the risk of excessive memory usage.
+    The default limit is pretty generous and currently set to max `250<<20 (262144000)` pixels and can be changed with the env `PB_THUMBS_MAX_SOURCE_PIXELS`.
+
+- (_Backported from v0.40.6_) Bumped `golang.org/x/` dependencies ([#7865](https://github.com/pocketbase/pocketbase/discussions/7865)).
+
+- (_Backported from v0.40.6_) Bumped the min Go GitHub action version to 1.27.3 as it includes a [security fix](https://groups.google.com/g/golang-announce/c/66pojueaQek) related to the recent eMudhra CA compromise.
+    _I didn't rush a fix 2 days ago as the impact for most PocketBase servers is not that serious and requires to already have a MiTM, but nonetheless it is recommended to update. Please make sure to also check for OS/Docker image updates to make sure that you have the latest `ca-certificates` bundle._
+
+
+## v0.22.56
+
+- (_Backported from v0.40.5_) Bumped the min Go GitHub action version to 1.27.2 as it includes several [`net/http` security fixes](https://github.com/golang/go/issues?q=milestone%3AGo1.27.2).
+    _One of the fixes is for a DoS that could potentially affect PocketBase applications and it is advised to update._
+
+
+## v0.22.55
+
+- (_Backported from v0.40.3_) Fixed collection index validator to allow expressions with parenthesis in the optional `WHERE` clause.
+
+- (_Backported from v0.40.3_) Fixed nested cascade delete of self-referenced relation records.
+
+- (_Backported from v0.40.3_) Bumped `golang.org/x/*` dependencies to silence security scanners ([#7829](https://github.com/pocketbase/pocketbase/discussions/7829)).
+
+
+## v0.22.54
+
+- (_Backported from v0.40.2_) Bumped goja and its related dependencies _(regex unescaped dash error fix and base64 optimizations)_.
+
+- (_Backported from v0.40.2_) Return an error when filter params fallback fails to json serialize and optimized params replacement to execute in a single pass.
+
+- (_Backported from v0.40.2_) Bumped the min Go GitHub action version to 1.27.1 as it includes some [minor `database/sql` and `enconding/json/v2` bug fixes](https://github.com/golang/go/issues?q=milestone%3AGo1.27.1).
+
+
+## v0.22.53
+
+- Workaround `encoding/json` infinite recursion when used with Go 1.27 ([#7808](https://github.com/pocketbase/pocketbase/issues/7808)).
+
+
 ## v0.22.52
 
 - (_Backported from v0.39.11_) Bumped `golang.org/x/*` deps and the min Go GitHub action version to 1.26.6 because it comes with some [minor bug and security fixes](https://github.com/golang/go/issues?q=milestone%3AGo1.26.6).
